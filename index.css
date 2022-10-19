@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
 * {
   padding: 0;
   margin: 0;
-  font-family: "Poppins", 'Times New Roman', Times, serif;
+  font-family: "Poppins", "Times New Roman", Times, serif;
   text-decoration: none;
 }
 
@@ -117,7 +117,7 @@ form {
   align-items: center;
 }
 
-form [class*='book'] {
+form [class*="book"] {
   width: 70vw;
   margin-bottom: 1rem;
   padding: 6px;
@@ -146,7 +146,7 @@ section {
   position: absolute;
   left: 0;
   top: 0;
-  padding: 3rem auto;
+  padding: 3rem 0;
   display: flex;
   align-items: center;
   justify-content: center;

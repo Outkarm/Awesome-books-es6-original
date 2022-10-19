@@ -1,3 +1,4 @@
+/* eslint-disable */
 class BookListApp {
   constructor() {
     this.bookList = [];
@@ -75,20 +76,22 @@ class BookListApp {
     document.querySelector(".title").value = "";
     document.querySelector(".author").value = "";
   }
+
   // Function to handle datetime
   getDate() {
     const time = document.querySelector(".time");
-    var date = new Date();
-    var now = date.toString().split(" ").splice(1, 4);
+    const date = new Date();
+    const now = date.toString().split(" ").splice(1, 4);
     let pe;
     if (date.getHours() >= 12) {
       pe = "pm";
     } else {
       pe = "am";
     }
-    var mon = `${now[0]} ${now[1]}th ${now[2]}, ${now[3]} ${pe}`;
+    const mon = `${now[0]} ${now[1]}th ${now[2]}, ${now[3]} ${pe}`;
     time.innerHTML = mon;
   }
+
   // Method to switch between sections
   navLinks() {
     // Switching Through Sections
@@ -96,9 +99,9 @@ class BookListApp {
     const listCont = document.querySelector(".nav-items");
     listCont.addEventListener("click", (e) => {
       e.preventDefault();
-      const id = e.target.dataset.id;
+      const { id } = e.target.dataset;
       if (id) {
-        //Removing the active section
+        // Removing the active section
         allSections.forEach((section) => {
           section.classList.remove("activesec");
         });
