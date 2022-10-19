@@ -1,0 +1,20 @@
+{
+  "name": "awesome-books-es6-original",
+  "version": "1.0.0",
+  "description": "If you are not familiar with linters, read [root level README](../README.md).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Outkarm/Awesome-books-es6-original.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Outkarm/Awesome-books-es6-original/issues"
+  },
+  "homepage": "https://github.com/Outkarm/Awesome-books-es6-original#readme"
+}
