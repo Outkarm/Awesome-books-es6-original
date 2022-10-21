@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 class BookListApp {
   constructor() {
     this.bookList = [];
@@ -9,7 +10,7 @@ class BookListApp {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>"${book.title}" by ${book.author}</td>
-      <td><button class= "remove-btn">Remove</button></td>
+      <td><button class= "remove-btn" id=${book.Id}>Remove</button></td>
       `;
     this.container.append(row);
   }
@@ -26,42 +27,11 @@ class BookListApp {
       e.preventDefault();
       const title = document.querySelector(".title").value;
       const author = document.querySelector(".author").value;
-      this.addBookToList({ title, author });
-      this.bookList.push({ title, author });
+      const Id = this.bookList.length;
+      this.addBookToList({ title, author, Id });
+      this.bookList.push({ title, author, Id });
       localStorage.setItem("books", JSON.stringify(this.bookList));
       this.clearFields();
-    });
-  }
-
-  // function to remove book
-  removeBook(el) {
-    if (el.classList.contains("remove-btn")) {
-      el.parentElement.parentElement.remove();
-    }
-  }
-
-  // Function to perform the following actions:
-  /*
-  1: Delete book to the dynamic elements
-  2: Delete book to the array of book
-  3: Delete book to the local storage
-  */
-
-  deleteBook() {
-    const books = this.bookList;
-    books.forEach((book, index) => {
-      books.splice(index, 1);
-    });
-    localStorage.setItem("books", JSON.stringify(books));
-  }
-
-  // Function to remove books when 'remove" button clicked
-  removeButton() {
-    this.container.addEventListener("click", (e) => {
-      // delete elements from screen
-      this.removeBook(e.target);
-      // remove book from local storage
-      this.deleteBook();
     });
   }
 
@@ -71,10 +41,49 @@ class BookListApp {
     books.forEach((book) => this.addBookToList(book));
   }
 
+  // Function to perform the following actions:
+  /*
+  1: Delete book to the dynamic elements
+  2: Delete book to the array of book
+  3: Delete book to the local storage
+  */
+
   // Clear form input's values
+
   clearFields() {
     document.querySelector(".title").value = "";
     document.querySelector(".author").value = "";
+  }
+
+  deleteBook(Id) {
+    const books = JSON.parse(localStorage.getItem("books"));
+    books.forEach((book, index) => {
+      if (index === Id) {
+        books.splice(index, 1);
+      }
+    });
+    books.map((item) => {
+      item.Id = books.length - 1;
+    });
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+
+  // function to remove book
+  removeBook(el) {
+    if (el.classList.contains("remove-btn")) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
+  // Function to remove books when 'remove" button clicked
+  removeButton() {
+    const container = document.querySelector(".book-container");
+    container.addEventListener("click", (e) => {
+      // delete elements from screen
+      this.deleteBook(Number(e.target.id));
+      // remove book from local storage
+      this.removeBook(e.target);
+    });
   }
 
   // Function to handle datetime
@@ -92,7 +101,6 @@ class BookListApp {
     time.innerHTML = mon;
   }
 
-  // Method to switch between sections
   navLinks() {
     // Switching Through Sections
     const allSections = document.querySelectorAll(".sections");
@@ -111,14 +119,5 @@ class BookListApp {
       }
     });
   }
-
-  callingAllFn() {
-    this.AppendBook();
-    this.removeButton();
-    this.displayBooks();
-    this.navLinks();
-    this.getDate();
-  }
 }
-
 export { BookListApp };
