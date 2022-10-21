@@ -62,9 +62,13 @@ class BookListApp {
         books.splice(index, 1);
       }
     });
-    books.map((item) => {
-      item.Id = books.length - 1;
-    });
+    let newId = 0;
+    if (books.length > 0) {
+      books.forEach((check) => {
+        check.Id = newId;
+        newId += 1;
+      });
+    }
     localStorage.setItem("books", JSON.stringify(books));
   }
 
