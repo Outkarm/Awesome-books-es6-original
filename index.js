@@ -2,4 +2,11 @@
 import { BookListApp } from './module/addBook.js';
 // instantiate class
 const books = new BookListApp();
-document.addEventListener('DOMContentLoaded', books.callingAllFn());
+
+books.AppendBook();
+books.removeButton();
+
+books.navLinks();
+books.getDate();
+
+document.addEventListener('DOMContentLoaded', books.displayBooks());
